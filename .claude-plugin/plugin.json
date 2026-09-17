@@ -1,0 +1,9 @@
+{
+  "name": "cerebro-compartido",
+  "version": "1.0.0",
+  "description": "Memoria de equipo sincronizada por GitHub: verdad común en team/ y memoria por participante en each_one/, con setup, consulta y cierre de sesión.",
+  "author": {
+    "name": "Terria team"
+  },
+  "license": "MIT"
+}

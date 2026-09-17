@@ -16,6 +16,7 @@ Install-BrainPackage -Id 'GitHub.cli' -Label 'GitHub CLI'
 Install-BrainPackage -Id 'Obsidian.Obsidian' -Label 'Obsidian'
 
 Copy-BrainTemplateNewOnly -Source $template -Destination $BrainRoot
+Copy-BrainTemplateNewOnly -Source ([System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..\skills'))) -Destination (Join-Path $BrainRoot 'team\skills')
 Set-BrainEnvironment -BrainRoot $BrainRoot -ParticipantId $ParticipantId
 
 if (-not (Get-Command git -ErrorAction SilentlyContinue)) { throw 'Git no esta disponible en este shell. Abrir uno nuevo y reintentar.' }

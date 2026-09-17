@@ -1,0 +1,13 @@
+{
+  "name": "cerebro-compartido",
+  "owner": {
+    "name": "JMReader"
+  },
+  "plugins": [
+    {
+      "name": "cerebro-compartido",
+      "source": "./",
+      "description": "Memoria de equipo sincronizada por GitHub entre humanos y agentes: setup, consulta y cierre de sesión sobre un vault compartido."
+    }
+  ]
+}

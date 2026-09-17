@@ -15,6 +15,7 @@ fi
 
 install_apps
 copy_new_only "$TEMPLATE_DIR" "$BRAIN_ROOT"
+copy_new_only "$SCRIPT_DIR/../../skills" "$BRAIN_ROOT/team/skills"
 set_brain_env "$BRAIN_ROOT" "$PARTICIPANT_ID"
 
 if [ ! -d "$BRAIN_ROOT/.git" ]; then
