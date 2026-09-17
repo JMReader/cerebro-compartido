@@ -1,0 +1,24 @@
+participants:
+  - id: admin
+    machine: brain-hub
+    role: admin
+  - id: participant-1
+    machine: participant-1
+    role: member
+    name: <nombre>
+  - id: participant-2
+    machine: participant-2
+    role: member
+    name: <nombre>
+  - id: participant-3
+    machine: participant-3
+    role: member
+    name: <nombre>
+  - id: participant-4
+    machine: participant-4
+    role: member
+    name: <nombre>
+
+# Reemplazar los ids por nombres cortos reales antes de iniciar el hackatón.
+# Agregar o quitar participantes según el tamaño del equipo.
+# Los ids sólo usan minúsculas, números y guiones.

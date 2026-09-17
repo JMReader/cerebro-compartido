@@ -1,0 +1,25 @@
+name: shared-brain
+layout: shared-team
+version: 1
+
+paths:
+  team: team
+  participants: each_one
+  decisions: team/decisions
+  projects: team/projects
+  captures: team/captures
+  skills: team/skills
+  links: team/links
+
+sync:
+  provider: git
+  # Completar con la URL del repositorio PRIVADO del equipo.
+  remote: https://github.com/<org-o-usuario>/<repo-del-cerebro>.git
+  branch: main
+  strategy: pull-rebase-commit-push
+  repository_private: true
+
+agents:
+  default_write: each_one/<participant-id>/inbox
+  shared_write_requires_explicit_reason: true
+  never_write_other_participant: true

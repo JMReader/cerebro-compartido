@@ -1,0 +1,14 @@
+# Secretos y entorno local: nunca entran al cerebro
+.env
+.env.*
+*.pem
+*.key
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Estado local de Obsidian (se comparte graph.json si el equipo quiere)
+.obsidian/workspace*
+.obsidian/cache*
+.trash/

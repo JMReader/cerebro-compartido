@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cerebro Compartido"
+  short_description: "Memoria de equipo con espacios comunes y personales"
+  default_prompt: "Retomá este trabajo usando el cerebro compartido y escribí sólo en mi espacio salvo que haya una decisión de equipo."
