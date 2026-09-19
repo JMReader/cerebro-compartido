@@ -1,7 +1,7 @@
 {
   "name": "cerebro-compartido",
   "version": "1.0.0",
-  "description": "Memoria de equipo sincronizada por GitHub: verdad común en team/ y memoria por participante en each_one/, con setup, consulta y cierre de sesión.",
+  "description": "Plugin con 3 skills para memoria de equipo sincronizada por GitHub: cerebro-setup (configuración por máquina), cerebro-leer (consulta del cerebro) y cerebro-cierre (cierre de tarea o decisión).",
   "author": {
     "name": "Terria team"
   },

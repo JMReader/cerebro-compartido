@@ -9,4 +9,4 @@ Este directorio es el vault Obsidian sincronizado entre las computadoras del equ
 - Configuración y reglas: `.brain/`
 - Plantillas: `_templates/`
 
-Antes de escribir, cada agente debe tener definidos `BRAIN_ROOT` y `PARTICIPANT_ID`. La skill `team/skills/cerebro-compartido/` aplica el contrato.
+Antes de escribir, cada agente debe tener definidos `BRAIN_ROOT` y `PARTICIPANT_ID`. Las skills `cerebro-leer` y `cerebro-cierre` aplican el contrato de lectura y escritura.

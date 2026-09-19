@@ -7,7 +7,7 @@
     {
       "name": "cerebro-compartido",
       "source": "./",
-      "description": "Memoria de equipo sincronizada por GitHub entre humanos y agentes: setup, consulta y cierre de sesión sobre un vault compartido."
+      "description": "Plugin con 3 skills para memoria de equipo sincronizada por GitHub entre humanos y agentes: cerebro-setup, cerebro-leer y cerebro-cierre sobre un vault compartido."
     }
   ]
 }

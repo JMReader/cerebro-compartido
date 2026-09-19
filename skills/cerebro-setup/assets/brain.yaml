@@ -1,0 +1,4 @@
+# Apunta al cerebro del equipo. La identidad vive en env por máquina.
+brain_repo: <url-del-repo-privado>
+brain_root_env: BRAIN_ROOT
+participant_env: PARTICIPANT_ID

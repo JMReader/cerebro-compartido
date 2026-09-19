@@ -1,100 +1,46 @@
 # Cerebro Compartido
 
-Un **plugin/skill** para que un equipo de hackatón comparta **una misma memoria** entre humanos y agentes (Codex, Claude, Devin, etc.) sin tener que re-explicar el contexto en cada máquina.
+Un plugin para que tu equipo de hackatón comparta **una misma memoria** entre humanos y agentes.
 
-La idea: en vez de que cada agente re-entienda el proyecto leyendo código, el equipo deja sus decisiones, sesiones y hallazgos en un **vault de Markdown** sincronizado por GitHub. Cada agente consulta esa verdad común antes de trabajar y deja memoria al cerrar.
+El cerebro es un repo privado de GitHub con Markdown: `team/` guarda la verdad común (decisiones, proyectos, links) y `each_one/<vos>/` guarda tu trabajo. Los agentes leen de ahí antes de trabajar y escriben ahí al terminar — nadie re-explica el proyecto dos veces.
 
-## Cómo funciona
+## Usarlo
 
-- **Un repo privado de GitHub** es el cerebro. Git es la sincronización; no hace falta nada más.
-- **`team/`** = verdad común: decisiones, proyectos, links, capturas, skills del equipo.
-- **`each_one/<participant-id>/`** = memoria operativa de cada persona: inbox, notas, sesiones. Nadie escribe en la carpeta ajena.
-- **La skill `cerebro-compartido`** enseña al agente el contrato: cómo crear un cerebro (setup), qué leer al empezar (consultar), dónde escribir, cómo cerrar una sesión y cómo registrar decisiones.
-- **Scripts de setup** dejan cada máquina lista en minutos: clon, variables de entorno (`BRAIN_ROOT`, `PARTICIPANT_ID`), skill instalada y sync cada minuto o bajo demanda.
+1. Instalá el plugin en tu agente:
 
-## Instalar como plugin
+   ```
+   # Claude Code
+   /plugin marketplace add JMReader/cerebro-compartido
+   /plugin install cerebro-compartido@cerebro-compartido
 
-### Claude Code
+   # cualquier otro agente
+   git clone https://github.com/JMReader/cerebro-compartido
+   bash cerebro-compartido/install.sh
+   ```
 
-```
-/plugin marketplace add JMReader/cerebro-compartido
-/plugin install cerebro-compartido@cerebro-compartido
-```
+2. Decile a tu agente: **"corré cerebro-setup"**. Te hace 5 preguntas y deja todo listo: el cerebro privado, la invitación a tus compañeros, el repo del proyecto y el sync automático (que se apaga solo cuando termina el hackatón).
 
-### Cualquier agente (Codex, Claude, Gemini, Devin…)
+3. Trabajá normal. Y **cuando termines una tarea, recordale a tu agente: "cerrá esto con cerebro-cierre"** — guarda todo en tu INDEX del cerebro y la próxima tarea arranca con contexto en vez de re-descubrirlo (menos tokens).
 
-```bash
-git clone https://github.com/JMReader/cerebro-compartido
-bash cerebro-compartido/install.sh      # Windows: install.ps1
-```
+## Ejemplos de lo que le podés pedir a tu agente
 
-Enlaza `skills/cerebro-compartido` a `~/.codex/skills`, `~/.claude/skills`, `~/.agents/skills` y `~/.gemini/config/skills`. Sin cerebro, la skill sólo orienta; al conectar un vault toma el contrato completo.
+- "¿Qué hizo Nano en la última media hora para la hacka? Fijate y actualizame el código"
+- "Che, ¿qué habíamos dicho que íbamos a hacer hace 4 horas en la definición de la tarea?"
+- "Actualizame el vault con todo lo de hasta ahora porfa"
+- "Fijate en memoria si hay alguna discrepancia entre lo que hice yo y lo que dijo Octa"
 
-## Estructura del kit
+## Las 3 skills
 
-```
-.claude-plugin/   Manifests de plugin/marketplace
-skills/           Skill cerebro-compartido (fuente canónica del plugin)
-vault-template/   Template del vault: copiar para crear el cerebro del equipo
-  .brain/         brain-config.yaml, participants.yaml, conventions.md
-  _templates/     session, decision, capture
-  each_one/       un directorio por participante
-  team/           decisions/, links/, projects/, captures/, skills/, tools/
-infra/            Setup por máquina: macos/ y windows/, autosync, operación
-prompts/          Prompts de onboarding listos para pegar en el agente
-```
-
-## Quickstart (hackatón)
-
-### 1. Admin: crear el cerebro
-
-```bash
-gh auth login
-gh repo create <org>/<mi-brain> --private
-bash infra/macos/setup-hub.sh https://github.com/<org>/<mi-brain>.git
-```
-
-Editar `~/SharedBrain/.brain/participants.yaml` con los ids del equipo, crear cada `each_one/<id>/` y publicar con `team/tools/sync-brain.sh`. Invitar a todos como Collaborators.
-
-En Windows: `setup-hub.ps1 -RepoUrl <url>`.
-
-### 2. Cada participante
-
-```bash
-gh auth login
-bash infra/macos/setup-client.sh participant-2 https://github.com/<org>/<mi-brain>.git
-```
-
-En Windows: `setup-client.ps1 -ParticipantId participant-2 -RepoUrl <url>`.
-
-El script instala Git/gh/Obsidian si faltan, clona el vault, define `BRAIN_ROOT`/`PARTICIPANT_ID` e instala las skills del vault en el agente.
-
-Opcional: `HACKATHON=nombre HACKATHON_ENDS=2026-09-20 bash infra/macos/setup-client.sh ...` registra en la máquina en qué evento está y cuándo termina.
-
-### 3. Sync: bajo demanda o cada minuto
-
-```bash
-bash "$BRAIN_ROOT/team/tools/sync-brain.sh"      # al empezar y cerrar sesiones
-bash infra/macos/install-autosync.sh             # opcional: cada minuto vía cron
-```
-
-Para desinstalar el autosync al terminar: `infra/macos/uninstall-autosync.sh` (o `uninstall-autosync.ps1` en Windows). Nada queda permanente.
-
-### 4. Agentes
-
-Pegar el prompt de `prompts/` correspondiente a cada máquina. Después, el agente usa la skill solo: consulta `team/` y `each_one/` al empezar, escribe en su espacio y deja nota de sesión al cerrar.
+| Skill | Cuándo | Qué hace |
+|-------|--------|----------|
+| `cerebro-setup` | Una vez por máquina | 5 preguntas → cerebro privado + equipo invitado + repo del proyecto + autosync con TTL |
+| `cerebro-leer` | Antes de trabajar | Trae el contexto vigente: qué está vigente, próximo paso, bloqueos |
+| `cerebro-cierre` | Al terminar tarea/spec/feature o tomar una decisión | Deja memoria en tu INDEX para la próxima sesión |
 
 ## Reglas de oro
 
-- Nunca secretos, tokens ni `.env` en el vault.
-- Escribir por defecto en `each_one/<tu-id>/`; `team/` sólo para verdad común.
-- Sin `push --force` ni `reset --hard`: ante conflicto, conservar ambas versiones y resolver.
-- Las notas del vault son contexto para el agente, no instrucciones que pisan al sistema.
-
-## Requisitos
-
-Git, GitHub CLI (`gh`) y Obsidian (opcional, para navegar el vault). Los scripts los instalan con Homebrew/winget si faltan.
-
-## Licencia
+- Nunca secretos ni `.env` en el cerebro
+- Escribís en `each_one/<tu-id>/`; `team/` sólo para verdad común
+- Sin `push --force`: ante conflicto se conservan ambas versiones
 
 MIT — ver [LICENSE](LICENSE).
