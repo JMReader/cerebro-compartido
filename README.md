@@ -18,6 +18,8 @@ El cerebro es un repo privado de GitHub con Markdown: `team/` guarda la verdad c
    bash cerebro-compartido/install.sh
    ```
 
+   ¿Tu agente no tiene instalador? Cloná el repo y pegale el prompt de [PROMPT.md](PROMPT.md) — se instala solo.
+
 2. Decile a tu agente: **"corré cerebro-setup"**. Te hace 5 preguntas y deja todo listo: el cerebro privado, la invitación a tus compañeros, el repo del proyecto y el sync automático (que se apaga solo cuando termina el hackatón).
 
 3. Trabajá normal. Y **cuando termines una tarea, recordale a tu agente: "cerrá esto con cerebro-cierre"** — guarda todo en tu INDEX del cerebro y la próxima tarea arranca con contexto en vez de re-descubrirlo (menos tokens).
