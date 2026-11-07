@@ -42,4 +42,3 @@ El helper no certifica la calidad de las pruebas ni comprueba por sí mismo que 
 
 - [Comentarios de Issues, API oficial](https://docs.github.com/en/rest/issues/comments): creación, paginación y filtro `since` permiten publicar y recuperar incrementos.
 - [Invitar colaboradores, GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/repository-access-and-collaboration/inviting-collaborators-to-a-personal-repository): invitar y aceptar son pasos separados; el enlace al plugin no concede acceso al cerebro privado.
-- [Propuesta externa fijada a commit](https://github.com/Voyager-Ov/cerebro-propuesta/tree/283174d): inspiración del grafo y prototipos, conservada como propuesta.
