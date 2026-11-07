@@ -1,7 +1,7 @@
 {
   "name": "cerebro-compartido",
-  "version": "1.0.0",
-  "description": "Plugin con 3 skills para memoria de equipo sincronizada por GitHub: cerebro-setup (configuración por máquina), cerebro-leer (consulta del cerebro) y cerebro-cierre (cierre de tarea o decisión).",
+  "version": "1.1.0",
+  "description": "Memoria de equipo y bitácora de entregas en GitHub: setup, leer, cierre y postear.",
   "author": {
     "name": "Terria team"
   },
