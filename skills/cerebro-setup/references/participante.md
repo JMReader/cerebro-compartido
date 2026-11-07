@@ -14,6 +14,7 @@ El repositorio privado del cerebro es `<repo-del-cerebro>` y mi cuenta de GitHub
 4. Si existe `each_one/<mi-usuario-github>` (creada con mi username de GitHub), renombrala a `each_one/<mi-alias>` y actualizá `.brain/participants.yaml` (id y name). Si no existe ninguna carpeta mía, creá `each_one/<mi-alias>/` y mi entrada en `participants.yaml`. Commiteá y sincronizá.
 5. Instalá las skills del equipo con `install-skills.sh` (macOS) o `install-skills.ps1` (Windows) desde los assets.
 6. Sync de prueba: creá una nota en `each_one/<mi-alias>/inbox/`, ejecutá `team/tools/sync-brain.sh` o `sync-brain.ps1`, verificá que llegó a GitHub, borrala y sincronizá de nuevo.
-7. Instalá el autosync con TTL con `install-autosync.sh` / `install-autosync.ps1`: corre cada N minutos durante el hackatón y se desinstala solo cuando pasa `HACKATHON_ENDS`.
+7. Verificá la bitácora de cada proyecto con `cerebro-postear doctor`, acceso a sus repos de código y aceptación de invitaciones. No cambies un id con entregas previas: actualizá sólo el nombre visible.
+8. Instalá el autosync con TTL con `install-autosync.sh` / `install-autosync.ps1`: corre cada N minutos durante el hackatón y se desinstala solo cuando pasa `HACKATHON_ENDS`.
 
 No uses `git push --force`, `git reset --hard` ni escribas en las carpetas de otros participantes. Si Git informa un conflicto, detenete, conservá ambas versiones y explicame qué archivos requieren resolución. Al terminar, informame la ruta local, el estado de Git y las skills instaladas.

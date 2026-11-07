@@ -2,3 +2,5 @@
 brain_repo: <url-del-repo-privado>
 brain_root_env: BRAIN_ROOT
 participant_env: PARTICIPANT_ID
+project: <id-del-proyecto>
+worklog_config: .brain/worklogs/<id-del-proyecto>.json # relativo al cerebro
